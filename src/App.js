@@ -1,5 +1,8 @@
 import Profile from "./views/Profile";
 import Inventory from './views/Inventorys'
+import NewInv from "./views/NewInv";
+import Home from "./views/Home";
+import CarSingle from "./views/CarSingle";
 import {
   BrowserRouter,
   Routes,
@@ -21,12 +24,19 @@ function App() {
           <li>
             <Link to="/profile">Profile</Link>
           </li>
+          <li>
+            <Link to="/newinv">New Inventory</Link>
+          </li>
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cars">
+          <Route path=":id" element={<CarSingle />} />
+        </Route>
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/newinv" element={<NewInv />} />
       </Routes>
     </BrowserRouter>
   )
