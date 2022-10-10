@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext } from "react";
-import { getFirestore, getDoc, getDocs, collection} from '@firebase/firestore'
+import { getFirestore, getDoc, getDocs, collection, doc,  } from '@firebase/firestore'
 
 export const DataContext = createContext()
 
@@ -27,13 +27,15 @@ export const DataProvider = function(props) {
         getCars() 
     }, [])
 
-    const getCar = function(id, callback) {
-        fetch(`https://my-json-server.typicode.com/Llang8/cars-api/cars/${id}`)
-        .then((res) => res.json())
-        .then((data) =>{
-            callback(data)
-        })
-
+    const getCar = async function(id, callback) {
+        const docRef = doc(db, "cars", id)
+        const docSnap = await getDoc(docRef)
+    
+        const car ={
+            ...docSnap.data(),
+            id: docSnap.id
+        }
+        callback(car)
     }
 
     const value ={
@@ -42,8 +44,8 @@ export const DataProvider = function(props) {
     }
 
     return (
-        <DataContext.Provider value ={value}>
-            { props.children}
+        <DataContext.Provider value={value}>
+            { props.children }
         </DataContext.Provider>
     )
 }

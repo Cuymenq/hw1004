@@ -10,19 +10,17 @@ export default function Car(props) {
                 {
                     (!props.preview) ?
                     (
-                        <h3>{props.car.year} {props.car.name}</h3>
+                        <h3>{props.car.Year} {props.car.Name}</h3>
                     )
                     :
-                    <Link to={`/cars/${props.car.id}`}>{props.car.name}</Link>
+                    <Link to={`/cars/${props.car.id}`}>{props.car.Year} {props.car.Name}</Link>
                 }
             </div>
             {
                 (!props.preview) ?
                 (
                     <div className="card-body">
-                        <p><strong>Selling Price:</strong> ${props.car.selling_price}</p>
-                        <p><strong>Fuel:</strong> {props.car.fuel}</p>
-                        <p><strong>Seats:</strong> {props.car.seats}</p>
+                        <p><strong>Selling Price:</strong> ${props.car['Selling Price']}</p>
 
                     </div>
                 )

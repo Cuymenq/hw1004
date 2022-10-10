@@ -4,7 +4,7 @@ import { DataContext } from "../contexts/DataProvider";
 
 export default function CarsList() {
     const { cars } = useContext(DataContext)
-
+    console.log(cars)
     return (
         <div>
             { cars.map((car) => <Car car={car} preview={true} key={car.id} />) }
